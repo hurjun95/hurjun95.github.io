@@ -1,44 +1,76 @@
-title: Your awesome title
-email: your-email@domain.com
-description: description
-baseurl: /Jekyll-Avalon
-url: http://joshuaavalon.github.io
-twitter_username: joshuaavalon
-github_username:  joshuaavalon
+# Site
+title:              Moon
+bio:                'Minimal, one column jekyll theme.'
+description:        "Moon is a minimal, one column jekyll theme for your blog."
+reading_time:       true
+words_per_minute:   200
+logo:               'assets/img/logo.png'
+background:         'assets/img/placeholder-big.jpg'
+tiled_bg:           false   # Set this true if you want to tile your background image, otherwise it will be covered
+locale:             en_US
+url:                https://taylantatli.github.io/Moon
 
+# Jekyll
+permalink:          /:title/
+markdown:           kramdown
+highlighter:        rouge
+kramdown:
+  auto_ids:         true
+  footnote_nr:      1
+  entity_output:    as_char
+  toc_levels:       1..6
+  enable_coderay:   false
+mathjax:            true
 sass:
-  style: compressed
+  sass_dir:         _sass
+  style:            compressed
 
-paginate: 12
-paginate_path: "/:num/"
+# Comments
+disqus_shortname:   taylantatli
 
-author_img_s: /img/author_s.png
-author_img: /img/author.png
+# Social
+# if you don't have any of social below, comment the line.
+#google:
+  #plus:            #username
+  #analytics:
+  #verify:
+  #ad-client:
+  #ad-slot:
+#bing-verify:
+#email:
+twitter:            username
+facebook:           username
+github-url:         username
+#stackoverflow:     123456/username   from a "http://stackoverflow.com/users/123456/username" link
+#linkedin:          username
+#xing:              username
+instagram:          username
+#lastfm:            username
+#tumblr:            username
+#medium:            '@username'
+#pinterest:         username
+#foursquare:        username
+steam:              username
+#dribbble:          username
+#youtube:           username
+#youtube-channel:   channel
+#soundcloud:        username
+#weibo:             username
+#flickr:            username
+#codepen:           username
+#keybase:           username
+#xmpp:              username@server.com
+#hackernews:        username
 
-navigation:
-  - text: Home
-    url: /
-  - text: Categories
-    url: /categories.html
-  - text: Tags
-    url: /tags.html
-
-read_more: Read More
-env: production
-minify_html: false # Set to true only when it is production. Increase significant build time.
-
-# Build settings
-markdown: kramdown
-
-sticky: sticky # Tag used for sticky post
-sticky_count: 3 # Number of sticky post shown
-
+# Gems
 gems:
-  - jekyll-paginate
+  - jekyll-mentions
   - jekyll-feed
-  
-exclude:
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-  - LICENSE
+  - jekyll-sitemap
+  - jekyll-gist
+
+jekyll-mentions:
+    base_url: https://github.com
+
+# Exclude list
+exclude: [README.md, Gemfile, Gemfile.lock, node_modules, gulpfile.js, package.json, _site, src, vendor, CNAME, LICENSE, Rakefile]

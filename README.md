@@ -1,53 +1,30 @@
-# Jekyll-Avalon
-[Demo](http://joshuaavalon.github.io/Jekyll-Avalon)
-![](https://raw.githubusercontent.com/joshuaavalon/Jekyll-Avalon/master/_screenshot/001.png)
+# Moon Jekyll Theme [![Donate](https://img.shields.io/badge/paypal-donate-blue.svg)](https://www.paypal.me/taylantatli/0usd)  
+  
+## `Sorry guys but there will be no update until I buy a new laptop.`
+    
+######(If you like this theme or using it, please give a :star: for motivation.)
 
-## About
-Jekyll-Avalon is a [Materialize](https://github.com/dogfalo/materialize) Jekyll theme.
+**[Moon](https://taylantatli.github.io/Moon)** is a minimal, one column jekyll theme.
 
-Featuring:
-* Material Design
-* Responsive Web Design
-* Tags and categories browsing
-* Lazy loading images
+## Features
+* Minimal, you can focus on your content
+* Responsive
+* Disqus integration
+* Syntax highlighting
+* Optional post image
+* Social icons
+* Page for sharing projects
+* Optional background image
+* Simple navigation menu
+* MathJax support
 
-## Installation
-This theme **CANNOT** be built by GitHub. You have to build it yourself.
-Please follows the following question.
+## Preview
 
-1. Are you willing to do extra works other than just blogging?
+![screenshot of Moon](https://cloud.githubusercontent.com/assets/754514/14509720/61c61058-01d6-11e6-93ab-0918515ecd56.png)    
+![screenshot of Moon](https://cloud.githubusercontent.com/assets/754514/14509716/61ac6c8e-01d6-11e6-879f-8308883de790.png)
 
- Yes > 3
- 
- No > 2
+See a [live version of Moon](https://taylantatli.github.io/Moon) hosted on GitHub.
 
-2. Are you willing to other git service like GitLab?
+## Getting Started
 
- Yes > Upload this repository to GitLab. It will auto-deploy like GitHub. Make sure you have turn on the GitLab Runner.
- 
- No > This theme is not for you.
-
-3. Install Ruby if you don't have it. In you are using Windows, you may want to try [Ruby Installer](http://rubyinstaller.org/).
-
-4. Install Jekyll and Bundler if you don't have it. Run the following commands in command prompt to install the packages.
- ```
- gem install jekyll bundler
- ```
-
-5. cd to your repository directory. Run the following command in command prompt to build.
- ```
- bundle exec jekyll serve
- ```
-6. Upload the content in `_site` to GitHub or your host.
-
-## Config
-Change everything you need in `_config.yml`. Change the footer in `_includes/footer.html`.
-
-If you want to change the color, go [here](https://github.com/dogfalo/materialize) to download SASS version 
-and replace the link in `_includes/head.html`.
-
-For comment support, you can use [Disqus](https://disqus.com/) and add the embed code to `_layouts/post.html`.
-Same for Google Analytics, add the embed code to `_includes/script.html`.
-
-## Post
-All the usable fields available are in `2016-10-27-welcome-to-jekyll.markdown`.
+To learn how to install and use this theme check out the [Setup Guide](https://taylantatli.github.io/Moon/moon-theme/) for more information.
