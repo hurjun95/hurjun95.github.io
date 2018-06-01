@@ -2,7 +2,7 @@
 layout: post
 title:  "Markdown Synta222x"
 date:   2018-06-01
-excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
+excerpt: "my first text"
 tag:
 - markdown 
 - syntax
