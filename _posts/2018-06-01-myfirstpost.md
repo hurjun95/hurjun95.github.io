@@ -1,10 +1,14 @@
 ---
 layout: post
-title:  "My first rmd"
-date:   2018-06-01
-excerpt: "This is my first text"
-project: false
-
+title:  "Markdown Synta222x"
+date:   2016-03-15
+excerpt: "Just about everything you'll need to style in the theme: headings, paragraphs, blockquotes, tables, code blocks, and more."
+tag:
+- markdown 
+- syntax
+- sample
+- test
+- jekyll
 comments: true
 ---
 
