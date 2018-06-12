@@ -1,0 +1,152 @@
+    library(reshape2)
+    library(dplyr)
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
+    library(ggplot2)
+
+    setwd("C:/Users/Hur_jun/Desktop/3-1/R프/final") #경로 설정
+    exchange <- read.csv("C:/Users/Hur_jun/Desktop/3-1/R프/final/exchange.csv") # 데이터 로드
+    exchange <- exchange[,c(1:20)]
+
+    # 한글 전처리
+    exchange[,2] <- gsub("남경이공대학교","NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY",exchange[,2] )
+    exchange[,2] <- gsub("동제대학교","Tongji University",exchange[,2])
+    exchange[,2] <- gsub("하얼빈공업대학교","Harbin Institute of Technology",exchange[,2])
+    exchange[,2] <- gsub("ISEP-US Truman State University","Truman State University",exchange[,2])
+
+    exchange[,4] <- gsub("Asia ","Asia",exchange[,4])
+    exchange[,4] <- as.factor(exchange[,4])
+    #파생변수 생성
+    exchange[,21] <- rowSums(exchange[,6:19]) ; names(exchange)[names(exchange)=="V21"] <-  c("종합점수")
+
+    head(exchange,10)
+
+    ##    순번                                       학교명 학교.코드    대륙
+    ## 1     1                                         NTNU      S_79  Europe
+    ## 2     2                                     FH-Krems     S_117  Europe
+    ## 3     3                             Fudan university     S_111    Asia
+    ## 4     4                      William Penn university       S_7 America
+    ## 5     5                           University of Oulu      S_29  Europe
+    ## 6     6 NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY      S_85    Asia
+    ## 7     7 NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY      S_85    Asia
+    ## 8     8 NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY      S_85    Asia
+    ## 9     9 NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY      S_85    Asia
+    ## 10   10             University of the Sunshine Coast      S_23 Oceania
+    ##          국가 수업의.양.만족도 수업.운영방식.만족도
+    ## 1    노르웨이                4                    4
+    ## 2  오스트리아                4                    4
+    ## 3        중국                3                    3
+    ## 4        미국                2                    3
+    ## 5      핀란드                2                    3
+    ## 6        중국                3                    2
+    ## 7        중국                3                    3
+    ## 8        중국                3                    2
+    ## 9        중국                4                    3
+    ## 10       호주                5                    5
+    ##    해당분야.지식.향상.만족도 수업.만족도 숙소 편의시설 식생활 외국인.생활
+    ## 1                          2           3    4        4      4           5
+    ## 2                          4           4    5        5      5           4
+    ## 3                          3           2    1        2      4           4
+    ## 4                          4           4    4        3      4           4
+    ## 5                          4           4    4        3      4           4
+    ## 6                          2           2    4        3      3           4
+    ## 7                          3           4    4        3      2           4
+    ## 8                          3           2    4        4      3           4
+    ## 9                          2           3    3        4      5           5
+    ## 10                         4           4    4        2      5           4
+    ##    한인회.연계도 외국인.비율 다양한.프로그램 학교생활.안내 전체적.서비스
+    ## 1              4           5               4             4             4
+    ## 2              5           5               5             5             4
+    ## 3              2           5               1             1             1
+    ## 4              2           2               2             3             3
+    ## 5              2           2               2             3             3
+    ## 6              3           1               3             4             3
+    ## 7              4           3               4             3             4
+    ## 8              3           2               3             3             3
+    ## 9              3           2               3             3             2
+    ## 10             5           5               3             3             3
+    ##    전반적.만족도 빅맥지수 종합점수
+    ## 1              4     5.51       55
+    ## 2              5     3.96       64
+    ## 3              2     2.79       34
+    ## 4              4     5.04       44
+    ## 5              4     5.06       44
+    ## 6              4     2.79       41
+    ## 7              4     2.79       48
+    ## 8              3     2.79       42
+    ## 9              4     2.79       46
+    ## 10             4     4.30       56
+
+    school <- melt(exchange[,c(2,21)], id.vars=c("학교명"))
+
+    head(school,10)
+
+    ##                                          학교명 variable value
+    ## 1                                          NTNU 종합점수    55
+    ## 2                                      FH-Krems 종합점수    64
+    ## 3                              Fudan university 종합점수    34
+    ## 4                       William Penn university 종합점수    44
+    ## 5                            University of Oulu 종합점수    44
+    ## 6  NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY 종합점수    41
+    ## 7  NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY 종합점수    48
+    ## 8  NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY 종합점수    42
+    ## 9  NANJING UNIVERSITY OF SCIENCE AND TECHNOLOGY 종합점수    46
+    ## 10             University of the Sunshine Coast 종합점수    56
+
+    school <- dcast(school, 학교명  ~ variable, mean, margins="학교명",na.rm=T)
+    head(school,10)
+
+    ##                                     학교명 종합점수
+    ## 1                       Aalborg University 42.20000
+    ## 2           Akita International University 68.00000
+    ## 3                   Arnhem business school 39.00000
+    ## 4                   Arnhem Business School 48.91667
+    ## 5          Athlone Institute of Technology 47.00000
+    ## 6  Augsburg University of Applied Sciences 48.00000
+    ## 7                         Avans University 35.00000
+    ## 8                      Bilketnt University 59.00000
+    ## 9            Central Washington University 54.00000
+    ## 10           China University of Petroleum 48.00000
+
+    schoolorder <- arrange(school,desc(종합점수))
+    top <- head(schoolorder,5)
+    top
+
+    ##                             학교명 종합점수
+    ## 1 Nanyang Technological University     70.0
+    ## 2   Akita International University     68.0
+    ## 3          Truman State University     67.5
+    ## 4     Technical University of Graz     66.0
+    ## 5               University of Iowa     64.0
+
+    low <- tail(schoolorder,5)
+    low
+
+    ##                                        학교명 종합점수
+    ## 133 University of Applied Sciences Ingolstadt 39.00000
+    ## 134                                       UKM 37.00000
+    ## 135               Universidad Rey Juan Carlos 36.00000
+    ## 136                          Fudan university 35.33333
+    ## 137                          Avans University 35.00000
+
+    topscore <- ggplot(data = top, aes(x=top$학교명,y=top$종합점수,fill = factor(top$학교명) ))
+    topscore<- topscore + geom_bar(width = .5, stat ="identity"  )
+    topscore
+
+![](https://hurjun95.github.io/assets/img/reshape2_files/unnamed-chunk-6-1.png)
+
+    lowscore <- ggplot(data = top, aes(x=low$학교명,y=low$종합점수,fill = factor(low$학교명) ))
+    lowscore<- lowscore + geom_bar(width = .5, stat ="identity" )
+    lowscore
+
+![](https://hurjun95.github.io/assets/img/reshape2_files/unnamed-chunk-7-1.png)
